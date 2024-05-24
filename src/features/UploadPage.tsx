@@ -5,6 +5,7 @@ import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import dummy from "../icon.png";
 import Image from "next/image";
+import axios from "axios";
 
 const UploadPage = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -26,8 +27,17 @@ const UploadPage = () => {
     ":hover": { backgroundColor: "#F41111" },
   };
 
-  const handleSubmit = (e) => {
-    console.log(e);
+  const handleSubmit = () => {
+    const body = new FormData();
+    body.append("file", file);
+    axios
+      .post("http://localhost:8001/uploadfile", body, {
+        headers: { "content-type": "multipart/from-data" },
+      })
+      .then((response) => {
+        alert("a");
+        console.log(response);
+      });
   };
   const handleFileInput = (e) => {
     console.log("a");
