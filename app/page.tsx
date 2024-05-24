@@ -1,5 +1,11 @@
+import Header from "@/src/components/Header";
 import UploadPage from "@/src/features/UploadPage";
 
 export default function Home() {
-  return <UploadPage></UploadPage>;
+  return (
+    <>
+      <Header />
+      <UploadPage></UploadPage>
+    </>
+  );
 }
