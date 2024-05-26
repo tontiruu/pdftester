@@ -44,14 +44,56 @@ const MainQuestions = () => {
   };
 
   const handleAcc = () => {
-    setAccCount(
-      accCount.map((count, index) =>
-        index == currentIndex ? count + 1 : count
-      )
+    const newAccCount = accCount.map((count, index) =>
+      index == currentIndex ? count + 1 : count
     );
-    setCurrentIndex((currentIndex) => {
-      return currentIndex + 1;
-    });
+    setAccCount(newAccCount);
+
+    const newNextInsertIndex = nextInsertIndex.map((data, index) =>
+      index == currentIndex ? Math.min(data * 2, QA.length - 1) : data
+    );
+    setNextInsertIndex(newNextInsertIndex);
+
+    const newQuestionQue = updateQue(newNextInsertIndex);
+    setQuestionQue(newQuestionQue);
+    console.log(newQuestionQue);
+
+    updateCurrentIndex(newQuestionQue);
+    setIsDisplayAnswer(false);
+  };
+
+  const handleMiss = () => {
+    const newMissCount = missCount.map((count, index) =>
+      index == currentIndex ? count + 1 : count
+    );
+    setMissCount(newMissCount);
+
+    const newNextInsertIndex = nextInsertIndex.map((data, index) =>
+      index == currentIndex ? Math.ceil(data / 2) : data
+    );
+    setNextInsertIndex(newNextInsertIndex);
+
+    const newQuestionQue = updateQue(newNextInsertIndex);
+    setQuestionQue(newQuestionQue);
+    console.log(newQuestionQue);
+
+    updateCurrentIndex(newQuestionQue);
+    setIsDisplayAnswer(false);
+  };
+
+  const updateQue = (newNextInsertIndex) => {
+    const insertIndex = newNextInsertIndex[currentIndex];
+    const newQuestionQue = questionQue.map((data, index) =>
+      index < insertIndex
+        ? questionQue[index + 1]
+        : index == insertIndex
+        ? currentIndex
+        : questionQue[index]
+    );
+    return newQuestionQue;
+  };
+  const updateCurrentIndex = (newQuestionQue) => {
+    setCurrentIndex(newQuestionQue[0]);
   };
 
   return (
@@ -92,6 +134,7 @@ const MainQuestions = () => {
               </div>
               <div style={{ display: "flex" }}>
                 <Button
+                  onClick={handleMiss}
                   sx={{
                     color: "white",
                     margin: "auto",
