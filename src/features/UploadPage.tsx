@@ -37,8 +37,12 @@ const UploadPage = () => {
         headers: { "content-type": "multipart/from-data" },
       })
       .then((response) => {
-        setIsLoading(false);
-        console.log(response);
+        if (!response.data.error) {
+          window.location.href = "/" + response.data.id;
+        } else {
+          setIsLoading(false);
+          alert(response.data.error_message);
+        }
       });
   };
   const handleFileInput = (e) => {
