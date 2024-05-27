@@ -1,0 +1,6 @@
+[build]
+  command = "npm install --save radium --force && npm run build"
+  publish = "build"
+
+[build.environment]
+  # 任意の環境変数があればここに追加
