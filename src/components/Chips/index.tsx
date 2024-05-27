@@ -20,7 +20,7 @@ const NewQuestionChip = ({
     <>
       {accCount + missCount == 0 ? (
         <Chip
-          icon={<AutoAwesomeIcon htmlhtmlColor="white" />}
+          icon={<AutoAwesomeIcon htmlColor="white" />}
           label="新規問題"
           sx={{ backgroundColor: "#22BFFF", color: "white", margin: "5px" }}
         />
