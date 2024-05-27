@@ -33,7 +33,7 @@ const UploadPage = () => {
     body.append("file", file);
     setIsLoading(true);
     axios
-      .post("http://localhost:8001/uploadfile", body, {
+      .post("https://pdftester-backend.onrender.com/uploadfile", body, {
         headers: { "content-type": "multipart/from-data" },
       })
       .then((response) => {

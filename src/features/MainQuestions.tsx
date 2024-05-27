@@ -11,7 +11,7 @@ import Radium, { StyleRoot } from "radium";
 
 const fetch_questions = (id: string, setQA) => {
   axios
-    .get(`http://localhost:8001/fetch_questions?id=${id}`)
+    .get(`https://pdftester-backend.onrender.com/fetch_questions?id=${id}`)
     .then((response) => {
       const fetchQuestions = response?.data.data;
       setQA(fetchQuestions);
