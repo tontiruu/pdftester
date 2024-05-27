@@ -1,0 +1,12 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  NPM_FLAGS = "--force"
+
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+
+[[build.lifecycle]]
+  onPreBuild = "npm install --save radium --force"
