@@ -1,13 +1,13 @@
 "use client";
 import Header from "@/src/components/Header";
 import UploadPage from "@/src/features/UploadPage";
-import { Box, Button } from "@mui/material";
+import { Button } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, useLocation } from "react-router-dom";
 import Chips from "../components/Chips";
 import ProgressBar from "../components/ProgressBar";
-import Radium, { StyleRoot } from "radium";
+import { Box } from "theme-ui";
 
 const fetch_questions = (id: string, setQA) => {
   axios

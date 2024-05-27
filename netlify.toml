@@ -1,4 +1,0 @@
-[build]
-  command = "npm install --save radium --force && npm run build"
-  publish = "build"
-
