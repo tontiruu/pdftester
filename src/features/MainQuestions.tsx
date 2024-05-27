@@ -149,7 +149,7 @@ const MainQuestions = () => {
           <Box
             sx={{
               fontSize: "20px",
-              height: "25vh",
+              height: "20vh",
               marginTop: "8vh",
               "@media(min-width: 500px)": {
                 fontSize: "30px",
@@ -163,7 +163,7 @@ const MainQuestions = () => {
               <Box
                 sx={{
                   fontSize: "20px",
-                  height: "20vh",
+                  height: "18vh",
                   marginTop: "20px",
                   "@media(min-width: 500px)": {
                     fontSize: "30px",
