@@ -29,21 +29,23 @@ const UploadPage = () => {
   };
 
   const handleSubmit = () => {
-    const body = new FormData();
-    body.append("file", file);
-    setIsLoading(true);
-    axios
-      .post("https://pdftester-backend.onrender.com/uploadfile", body, {
-        headers: { "content-type": "multipart/from-data" },
-      })
-      .then((response) => {
-        if (!response.data.error) {
-          window.location.href = "/" + response.data.id;
-        } else {
-          setIsLoading(false);
-          alert(response.data.error_message);
-        }
-      });
+    if (file) {
+      const body = new FormData();
+      body.append("file", file);
+      setIsLoading(true);
+      axios
+        .post("https://pdftester-backend.onrender.com/uploadfile", body, {
+          headers: { "content-type": "multipart/from-data" },
+        })
+        .then((response) => {
+          if (!response.data.error) {
+            window.location.href = "/" + response.data.id;
+          } else {
+            setIsLoading(false);
+            alert(response.data.error_message);
+          }
+        });
+    }
   };
   const handleFileInput = (e: any) => {
     setFile(e.target.files[0]);
