@@ -9,7 +9,7 @@ import Chips from "../components/Chips";
 import ProgressBar from "../components/ProgressBar";
 import { Box } from "theme-ui";
 
-const fetch_questions = (id: string, setQA) => {
+const fetch_questions = (id: string, setQA: any) => {
   axios
     .get(`https://pdftester-backend.onrender.com/fetch_questions?id=${id}`)
     .then((response) => {
@@ -88,14 +88,14 @@ const MainQuestions = () => {
     );
     setNextInsertIndex(newNextInsertIndex);
 
-    const newQuestionQue = updateQue(newNextInsertIndex);
+    const newQuestionQue: number[] = updateQue(newNextInsertIndex);
     setQuestionQue(newQuestionQue);
 
     updateCurrentIndex(newQuestionQue);
     setIsDisplayAnswer(false);
   };
 
-  const updateQue = (newNextInsertIndex) => {
+  const updateQue = (newNextInsertIndex: any) => {
     const insertIndex = newNextInsertIndex[currentIndex];
     const newQuestionQue = questionQue.map((data, index) =>
       index < insertIndex
@@ -106,7 +106,7 @@ const MainQuestions = () => {
     );
     return newQuestionQue;
   };
-  const updateCurrentIndex = (newQuestionQue) => {
+  const updateCurrentIndex = (newQuestionQue: any) => {
     setCurrentIndex(newQuestionQue[0]);
   };
 

@@ -45,7 +45,7 @@ const UploadPage = () => {
         }
       });
   };
-  const handleFileInput = (e) => {
+  const handleFileInput = (e: any) => {
     setFile(e.target.files[0]);
   };
 
