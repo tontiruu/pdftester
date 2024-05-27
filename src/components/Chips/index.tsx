@@ -6,6 +6,7 @@ import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import FollowTheSignsIcon from "@mui/icons-material/FollowTheSigns";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
+import { grey } from "@mui/material/colors";
 
 const NewQuestionChip = ({
   accCount,
@@ -14,11 +15,12 @@ const NewQuestionChip = ({
   accCount: number;
   missCount: number;
 }) => {
+  const primary = grey[50];
   return (
     <>
       {accCount + missCount == 0 ? (
         <Chip
-          icon={<AutoAwesomeIcon />}
+          icon={<AutoAwesomeIcon htmlhtmlColor="white" />}
           label="新規問題"
           sx={{ backgroundColor: "#22BFFF", color: "white", margin: "5px" }}
         />
@@ -40,7 +42,7 @@ const VeryNeedEffort = ({
     <>
       {missCount >= 2 && accCount / (accCount + missCount) <= 0.4 ? (
         <Chip
-          icon={<ReportProblemIcon />}
+          icon={<ReportProblemIcon htmlColor="white" />}
           label="重度の苦手"
           sx={{ backgroundColor: "#000000", color: "white", margin: "5px" }}
         />
@@ -62,7 +64,7 @@ const NeedEffort = ({
     <>
       {accCount + missCount > 0 && accCount / (accCount + missCount) < 0.6 ? (
         <Chip
-          icon={<FitnessCenterIcon />}
+          icon={<FitnessCenterIcon htmlColor="white" />}
           label="苦手克服"
           sx={{ backgroundColor: "#F43333", color: "white", margin: "5px" }}
         />
@@ -86,7 +88,7 @@ const OneMoreStep = ({
       accCount / (accCount + missCount) >= 0.6 &&
       accCount / (accCount + missCount) < 0.75 ? (
         <Chip
-          icon={<FollowTheSignsIcon />}
+          icon={<FollowTheSignsIcon htmlColor="white" />}
           label="定着まで後一歩"
           sx={{ backgroundColor: "#FF5F17", color: "white", margin: "5px" }}
         />
@@ -108,7 +110,7 @@ const Established = ({
     <>
       {accCount >= 2 && accCount / (accCount + missCount) >= 0.75 ? (
         <Chip
-          icon={<WorkspacePremiumIcon />}
+          icon={<WorkspacePremiumIcon htmlColor="white" />}
           label="記憶定着"
           sx={{ backgroundColor: "#00BB00", color: "white", margin: "5px" }}
         />
@@ -130,7 +132,7 @@ const Perfect = ({
     <>
       {accCount > 0 && missCount == 0 ? (
         <Chip
-          icon={<ThumbUpAltIcon />}
+          icon={<ThumbUpAltIcon htmlColor="white" />}
           label="正答率100%"
           sx={{ backgroundColor: "#BBBB00", color: "white", margin: "5px" }}
         />
