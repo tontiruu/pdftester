@@ -57,7 +57,7 @@ const MainQuestions = () => {
           : Math.min(
               Math.ceil(
                 data *
-                  1.25 *
+                  1.2 *
                   Math.min(
                     (newAccCount[currentIndex] + 3) /
                       (newAccCount[currentIndex] + missCount[currentIndex] + 1),
