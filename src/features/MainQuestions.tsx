@@ -72,7 +72,6 @@ const MainQuestions = () => {
 
     const newQuestionQue = updateQue(newNextInsertIndex);
     setQuestionQue(newQuestionQue);
-    console.log(newQuestionQue);
 
     updateCurrentIndex(newQuestionQue);
     setIsDisplayAnswer(false);
@@ -91,7 +90,6 @@ const MainQuestions = () => {
 
     const newQuestionQue = updateQue(newNextInsertIndex);
     setQuestionQue(newQuestionQue);
-    console.log(newQuestionQue);
 
     updateCurrentIndex(newQuestionQue);
     setIsDisplayAnswer(false);
