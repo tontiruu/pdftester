@@ -7,6 +7,18 @@ import FollowTheSignsIcon from "@mui/icons-material/FollowTheSigns";
 import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import ReportProblemIcon from "@mui/icons-material/ReportProblem";
 import { grey } from "@mui/material/colors";
+import { createTheme, ThemeProvider, Theme } from "@mui/material";
+
+const theme: Theme = createTheme({
+  palette: {
+    primary: {
+      main: "#FFFFFF",
+      contrastText: "#ffffff",
+      dark: "#58928C",
+      light: "#CDFFFA",
+    },
+  },
+});
 
 const NewQuestionChip = ({
   accCount,
@@ -20,7 +32,7 @@ const NewQuestionChip = ({
     <>
       {accCount + missCount == 0 ? (
         <Chip
-          icon={<AutoAwesomeIcon htmlColor="white" />}
+          icon={<AutoAwesomeIcon sx={{ color: "#FFFFFF" }} />}
           label="新規問題"
           sx={{ backgroundColor: "#22BFFF", color: "white", margin: "5px" }}
         />
@@ -42,7 +54,7 @@ const VeryNeedEffort = ({
     <>
       {missCount >= 2 && accCount / (accCount + missCount) <= 0.4 ? (
         <Chip
-          icon={<ReportProblemIcon htmlColor="white" />}
+          icon={<ReportProblemIcon sx={{ color: "#FFFFFF" }} />}
           label="重度の苦手"
           sx={{ backgroundColor: "#000000", color: "white", margin: "5px" }}
         />
@@ -64,7 +76,7 @@ const NeedEffort = ({
     <>
       {accCount + missCount > 0 && accCount / (accCount + missCount) < 0.6 ? (
         <Chip
-          icon={<FitnessCenterIcon htmlColor="white" />}
+          icon={<FitnessCenterIcon sx={{ color: "#FFFFFF" }} />}
           label="苦手克服"
           sx={{ backgroundColor: "#F43333", color: "white", margin: "5px" }}
         />
@@ -88,7 +100,7 @@ const OneMoreStep = ({
       accCount / (accCount + missCount) >= 0.6 &&
       accCount / (accCount + missCount) < 0.75 ? (
         <Chip
-          icon={<FollowTheSignsIcon htmlColor="white" />}
+          icon={<FollowTheSignsIcon sx={{ color: "#FFFFFF" }} />}
           label="定着まで後一歩"
           sx={{ backgroundColor: "#FF5F17", color: "white", margin: "5px" }}
         />
@@ -110,7 +122,7 @@ const Established = ({
     <>
       {accCount >= 2 && accCount / (accCount + missCount) >= 0.75 ? (
         <Chip
-          icon={<WorkspacePremiumIcon htmlColor="white" />}
+          icon={<WorkspacePremiumIcon sx={{ color: "#FFFFFF" }} />}
           label="記憶定着"
           sx={{ backgroundColor: "#00BB00", color: "white", margin: "5px" }}
         />
@@ -132,7 +144,7 @@ const Perfect = ({
     <>
       {accCount > 0 && missCount == 0 ? (
         <Chip
-          icon={<ThumbUpAltIcon htmlColor="white" />}
+          icon={<ThumbUpAltIcon sx={{ color: "#FFFFFF" }} />}
           label="正答率100%"
           sx={{ backgroundColor: "#BBBB00", color: "white", margin: "5px" }}
         />
@@ -151,21 +163,23 @@ const Chips = ({
   missCount: number;
 }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        margin: "auto",
-        justifyContent: "center",
-        marginTop: "2vh",
-      }}
-    >
-      <NewQuestionChip accCount={accCount} missCount={missCount} />
-      <VeryNeedEffort accCount={accCount} missCount={missCount} />
-      <NeedEffort accCount={accCount} missCount={missCount} />
-      <OneMoreStep accCount={accCount} missCount={missCount} />
-      <Established accCount={accCount} missCount={missCount} />
-      <Perfect accCount={accCount} missCount={missCount} />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div
+        style={{
+          display: "flex",
+          margin: "auto",
+          justifyContent: "center",
+          marginTop: "2vh",
+        }}
+      >
+        <NewQuestionChip accCount={accCount} missCount={missCount} />
+        <VeryNeedEffort accCount={accCount} missCount={missCount} />
+        <NeedEffort accCount={accCount} missCount={missCount} />
+        <OneMoreStep accCount={accCount} missCount={missCount} />
+        <Established accCount={accCount} missCount={missCount} />
+        <Perfect accCount={accCount} missCount={missCount} />
+      </div>
+    </ThemeProvider>
   );
 };
 
