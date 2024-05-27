@@ -21,11 +21,11 @@ const fetch_questions = (id: string, setQA: any) => {
 const MainQuestions = () => {
   const id = useLocation().pathname.split("/")[1];
   const [QA, setQA] = useState([]);
-  const [accCount, setAccCount] = useState([]);
-  const [missCount, setMissCount] = useState([]);
-  const [nextInsertIndex, setNextInsertIndex] = useState([]);
-  const [questionQue, setQuestionQue] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [accCount, setAccCount] = useState<number[]>([]);
+  const [missCount, setMissCount] = useState<number[]>([]);
+  const [nextInsertIndex, setNextInsertIndex] = useState<number[]>([]);
+  const [questionQue, setQuestionQue] = useState<number[]>([]);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [isDisplayAnswer, setIsDisplayAnswer] = useState(false);
   useEffect(() => {
     fetch_questions(id, setQA);
@@ -36,7 +36,9 @@ const MainQuestions = () => {
       setNextInsertIndex([...Array(QA.length)].map((x) => 8));
       setAccCount([...Array(QA.length)].map((x) => 0));
       setMissCount([...Array(QA.length)].map((x) => 0));
-      setQuestionQue([...Array(QA.length).keys()]);
+      setQuestionQue(
+        Array.from({ length: QA.length + 1 }, (_, index) => index)
+      );
     }
   }, [QA?.length]);
 
