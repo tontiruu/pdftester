@@ -17,10 +17,14 @@ const fetch_questions = (id: string, setQA: any) => {
       setQA(fetchQuestions);
     });
 };
+interface QAItem {
+  Q: string;
+  A: string;
+}
 
 const MainQuestions = () => {
   const id = useLocation().pathname.split("/")[1];
-  const [QA, setQA] = useState([]);
+  const [QA, setQA] = useState<QAItem[]>([]);
   const [accCount, setAccCount] = useState<number[]>([]);
   const [missCount, setMissCount] = useState<number[]>([]);
   const [nextInsertIndex, setNextInsertIndex] = useState<number[]>([]);
