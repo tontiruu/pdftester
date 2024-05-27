@@ -18,7 +18,7 @@ const NewQuestionChip = ({
     <>
       {accCount + missCount == 0 ? (
         <Chip
-          icon={<AutoAwesomeIcon nativeColor="white" />}
+          icon={<AutoAwesomeIcon />}
           label="新規問題"
           sx={{ backgroundColor: "#22BFFF", color: "white", margin: "5px" }}
         />
@@ -40,7 +40,7 @@ const VeryNeedEffort = ({
     <>
       {missCount >= 2 && accCount / (accCount + missCount) <= 0.4 ? (
         <Chip
-          icon={<ReportProblemIcon nativeColor="white" />}
+          icon={<ReportProblemIcon />}
           label="重度の苦手"
           sx={{ backgroundColor: "#000000", color: "white", margin: "5px" }}
         />
@@ -62,7 +62,7 @@ const NeedEffort = ({
     <>
       {accCount + missCount > 0 && accCount / (accCount + missCount) < 0.6 ? (
         <Chip
-          icon={<FitnessCenterIcon nativeColor="white" />}
+          icon={<FitnessCenterIcon />}
           label="苦手克服"
           sx={{ backgroundColor: "#F43333", color: "white", margin: "5px" }}
         />
@@ -86,7 +86,7 @@ const OneMoreStep = ({
       accCount / (accCount + missCount) >= 0.6 &&
       accCount / (accCount + missCount) < 0.75 ? (
         <Chip
-          icon={<FollowTheSignsIcon nativeColor="white" />}
+          icon={<FollowTheSignsIcon />}
           label="定着まで後一歩"
           sx={{ backgroundColor: "#FF5F17", color: "white", margin: "5px" }}
         />
@@ -108,7 +108,7 @@ const Established = ({
     <>
       {accCount >= 2 && accCount / (accCount + missCount) >= 0.75 ? (
         <Chip
-          icon={<WorkspacePremiumIcon nativeColor="white" />}
+          icon={<WorkspacePremiumIcon />}
           label="記憶定着"
           sx={{ backgroundColor: "#00BB00", color: "white", margin: "5px" }}
         />
@@ -130,7 +130,7 @@ const Perfect = ({
     <>
       {accCount > 0 && missCount == 0 ? (
         <Chip
-          icon={<ThumbUpAltIcon nativeColor="white" />}
+          icon={<ThumbUpAltIcon />}
           label="正答率100%"
           sx={{ backgroundColor: "#BBBB00", color: "white", margin: "5px" }}
         />
