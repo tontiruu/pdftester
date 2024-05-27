@@ -1,10 +1,12 @@
 "use client";
 import Header from "@/src/components/Header";
 import UploadPage from "@/src/features/UploadPage";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, useLocation } from "react-router-dom";
+import Chips from "../components/Chips";
+import ProgressBar from "../components/ProgressBar";
 import Radium, { StyleRoot } from "radium";
 
 const fetch_questions = (id: string, setQA) => {
@@ -31,8 +33,7 @@ const MainQuestions = () => {
 
   useEffect(() => {
     if (QA) {
-      console.log(QA.length);
-      setNextInsertIndex([...Array(QA.length)].map((x) => 16));
+      setNextInsertIndex([...Array(QA.length)].map((x) => 8));
       setAccCount([...Array(QA.length)].map((x) => 0));
       setMissCount([...Array(QA.length)].map((x) => 0));
       setQuestionQue([...Array(QA.length).keys()]);
@@ -50,7 +51,22 @@ const MainQuestions = () => {
     setAccCount(newAccCount);
 
     const newNextInsertIndex = nextInsertIndex.map((data, index) =>
-      index == currentIndex ? Math.min(data * 2, QA.length - 1) : data
+      index == currentIndex
+        ? missCount[currentIndex] == 0
+          ? QA.length - 1
+          : Math.min(
+              Math.ceil(
+                data *
+                  1.25 *
+                  Math.min(
+                    (newAccCount[currentIndex] + 3) /
+                      (newAccCount[currentIndex] + missCount[currentIndex] + 1),
+                    1
+                  )
+              ),
+              QA.length - 1
+            )
+        : data
     );
     setNextInsertIndex(newNextInsertIndex);
 
@@ -69,7 +85,7 @@ const MainQuestions = () => {
     setMissCount(newMissCount);
 
     const newNextInsertIndex = nextInsertIndex.map((data, index) =>
-      index == currentIndex ? Math.ceil(data / 2) : data
+      index == currentIndex ? Math.ceil(data / 2.5) : data
     );
     setNextInsertIndex(newNextInsertIndex);
 
@@ -96,6 +112,20 @@ const MainQuestions = () => {
     setCurrentIndex(newQuestionQue[0]);
   };
 
+  const progressBarAchievement = () => {
+    let achievementCount = 0;
+    for (let i = 0; i < QA.length; i++) {
+      if (
+        accCount[i] > 0 &&
+        accCount[i] / (accCount[i] + missCount[i]) >= 0.75
+      ) {
+        achievementCount += 1;
+      }
+    }
+
+    return Math.round((achievementCount / QA.length) * 100);
+  };
+
   return (
     <div
       style={{
@@ -104,34 +134,40 @@ const MainQuestions = () => {
         padding: "20px",
       }}
     >
+      <ProgressBar value={progressBarAchievement()} />
+      <Chips
+        accCount={accCount[currentIndex]}
+        missCount={missCount[currentIndex]}
+      />
+
       {QA && (
-        <StyleRoot>
-          <div
-            style={{
+        <div>
+          <Box
+            sx={{
               fontSize: "20px",
               height: "25vh",
-              marginTop: "10vh",
+              marginTop: "8vh",
               "@media(min-width: 500px)": {
                 fontSize: "30px",
               },
             }}
           >
             {QA[currentIndex]?.Q}
-          </div>
+          </Box>
           {isDisplayAnswer ? (
             <>
-              <div
-                style={{
+              <Box
+                sx={{
                   fontSize: "20px",
-                  height: "25vh",
-                  marginTop: "50px",
+                  height: "20vh",
+                  marginTop: "20px",
                   "@media(min-width: 500px)": {
                     fontSize: "30px",
                   },
                 }}
               >
                 {QA[currentIndex]?.A}
-              </div>
+              </Box>
               <div style={{ display: "flex" }}>
                 <Button
                   onClick={handleMiss}
@@ -195,7 +231,7 @@ const MainQuestions = () => {
               答えを見る
             </Button>
           )}
-        </StyleRoot>
+        </div>
       )}
     </div>
   );
